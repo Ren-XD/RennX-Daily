@@ -49,3 +49,5 @@ input,textarea,select{background:var(--p2);color:var(--tx);border:1px solid var(
 @media(max-width:760px){.app{grid-template-columns:1fr}aside{display:none}main{padding:14px 12px 80px}.mob{display:flex;position:fixed;bottom:0;left:0;right:0;background:var(--p1);border-top:1px solid var(--bd);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));z-index:5}
 .mob button{flex:1;border:0;background:none;color:var(--mu);font-size:10px;display:flex;flex-direction:column;align-items:center;gap:2px}.mob button svg{font-size:20px}.mob button.on{color:var(--g)}
 .cards{grid-template-columns:repeat(3,1fr)}.rt{padding:12px 0}.ck{width:30px;height:30px}.date{font-size:12px;padding:6px 10px}}
+
+.ck:disabled{cursor:default}.ck.on:disabled{opacity:.9}.ck:disabled:not(.on){opacity:.45}
