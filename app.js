@@ -17,7 +17,7 @@ let S;function load(){try{S=JSON.parse(localStorage.getItem(K));}catch(e){S=null
  if(!S.start)S.start=today()}
 function save(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}}
 load();
-let view='home',sel=today(),cm=pd(sel),tab='w',fm=cm.getMonth(),fy=cm.getFullYear();
+let view=(()=>{try{const v=localStorage.getItem(K+'-view');return['home','cal','stat','hist','set'].includes(v)?v:'home'}catch(e){return'home'}})(),sel=today(),cm=pd(sel),tab='w',fm=cm.getMonth(),fy=cm.getFullYear();
 const MN=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'],HN=['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'],HS=['Min','Sen','Sel','Rab','Kam','Jum','Sab'];
 const fmt=s=>{const d=pd(s);return HN[d.getDay()]+', '+d.getDate()+' '+MN[d.getMonth()]+' '+d.getFullYear()};
 // routines in effect for date: snapshot if saved, else active current
@@ -66,11 +66,11 @@ function exp(){const a=document.createElement('a');a.href=URL.createObjectURL(ne
 function imp(el){const f=el.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!Array.isArray(d.routines)||typeof d.days!=='object')throw 0;if(confirm('Timpa data saat ini dengan file ini?')){S=d;if(!S.start)S.start=today();save();render()}}catch(e){alert('File tidak valid.')}};r.readAsText(f)}
 const NAV=[['home','Beranda','home'],['cal','Kalender','cal'],['stat','Statistik','stat'],['hist','Riwayat','hist'],['set','Pengaturan','set']];
 function go(v){view=v;render();scrollTo(0,0)}
-function render(){const t=today();
+function render(){const t=today();try{localStorage.setItem(K+'-view',view)}catch(e){}
  const nv=NAV.map(([k,l,i])=>`<button class="${view===k?'on':''}" onclick="go('${k}')">${ic(i)}${l}</button>`).join('');nav.innerHTML=nv;mob.innerHTML=nv;
  hd.innerHTML=ic('cal')+' '+fmt(t);let h='';
  if(view==='home'){h=`<div class="grid"><div class="col"><div class="hello">${ic('sun')}<div><h2>${greet()}, ${esc(S.name)}</h2><span class="mu sm">Hari ini adalah kesempatan baru untuk jadi lebih baik.</span></div></div>${progress(sel)}${checklist(sel)}${summary(sel)}</div><div class="col">${calendar()}${stats()}${monthly()}${yearly()}</div></div>`}
- else if(view==='cal')h=`<div class="grid"><div class="col">${progress(sel)}${checklist(sel)}</div><div class="col">${calendar()}</div></div>`;
+ else if(view==='cal')h=`<div class="grid calv"><div class="col">${progress(sel)}${checklist(sel)}</div><div class="col">${calendar()}</div></div>`;
  else if(view==='stat')h=`<div class="grid"><div class="col">${stats()}${monthly()}${yearly()}</div><div class="col">${summary(t)}</div></div>`;
  else if(view==='hist')h=histView();else h=settings();
  const y=window.scrollY;v.innerHTML=h;scrollTo(0,y)}

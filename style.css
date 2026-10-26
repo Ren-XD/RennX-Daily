@@ -51,3 +51,4 @@ input,textarea,select{background:var(--p2);color:var(--tx);border:1px solid var(
 .cards{grid-template-columns:repeat(3,1fr)}.rt{padding:12px 0}.ck{width:30px;height:30px}.date{font-size:12px;padding:6px 10px}}
 
 .ck:disabled{cursor:default}.ck.on:disabled{opacity:.9}.ck:disabled:not(.on){opacity:.45}
+html{touch-action:manipulation}@media(max-width:1000px){.calv .col:last-child{order:-1}}
