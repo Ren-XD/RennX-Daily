@@ -1,9 +1,47 @@
 <!DOCTYPE html>
-<html lang="id"><head><meta charset="utf-8"><title>RennX Daily</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<link rel="stylesheet" href="style.css"></head><body>
-<div class="app"><aside><div class="logo"><b>R</b><div>RennX Daily<small>Progress Today, Better Tomorrow</small></div></div><nav id="nav"></nav>
-<div class="quote">“Disiplin hari ini, masa depan yang kamu impikan nanti.”<br><br>— RennX</div></aside>
-<main><header><div id="hl" class="hl"></div><div class="date" id="hd"></div><div class="av"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div></header><div id="v"></div></main></div>
-<nav class="mob" id="mob"></nav>
-<script src="app.js"></script></body></html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FFF8EC">
+<title>RennX Daily</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600..800;1,9..144,600..800&family=Hanken+Grotesk:wght@400..800&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<svg class="gradient-defs" width="0" height="0" aria-hidden="true" focusable="false">
+<defs>
+<linearGradient id="ringGradient" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#14A463"/>
+<stop offset="1" stop-color="#8ADB5C"/>
+</linearGradient>
+</defs>
+</svg>
+<aside class="side-rail">
+<p class="brand"><span class="brand-mark">R</span><span class="brand-name">RennX Daily<small>Progress Today, Better Tomorrow</small></span></p>
+<nav class="main-nav" id="railNav" aria-label="Menu utama"></nav>
+<blockquote class="rail-quote">“Disiplin hari ini, masa depan yang kamu impikan nanti.”<cite>— RennX</cite></blockquote>
+</aside>
+<header class="top-bar">
+<p class="brand top-brand"><span class="brand-mark">R</span><span class="brand-name">RennX Daily<small>Progress Today, Better Tomorrow</small></span></p>
+<time class="date-chip" id="dateChip"></time>
+<span class="avatar" id="avatar" aria-hidden="true"></span>
+</header>
+<main class="stage" id="stage"><noscript><p class="script-note">Aktifkan JavaScript untuk memakai RennX Daily.</p></noscript></main>
+<nav class="dock" id="dockNav" aria-label="Menu bawah"></nav>
+<p class="notice" id="notice" role="status" aria-live="polite"></p>
+<dialog class="ask-dialog" id="askDialog">
+<form method="dialog">
+<h2 id="askTitle"></h2>
+<p id="askBody"></p>
+<menu>
+<button class="pill-action" value="cancel">Batal</button>
+<button class="pill-action is-primary" value="ok" id="askOk">Ya</button>
+</menu>
+</form>
+</dialog>
+<script src="app.js"></script>
+</body>
+</html>
