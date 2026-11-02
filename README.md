@@ -17,3 +17,11 @@ Tema terang bernama "fajar": krem hangat, hijau daun, kuning matahari. Hero beru
 - Zoom tidak lagi diblokir (aksesibilitas); gerak dimatikan otomatis bila perangkat meminta reduced motion
 - Data tetap di localStorage dengan kunci lama, jadi data lama tetap terbaca
 - Font Fraunces dan Hanken Grotesk dimuat dari Google Fonts; tanpa internet jatuh ke font sistem
+
+## Instal sebagai aplikasi (PWA)
+Hosting folder ini lewat HTTPS (GitHub Pages, Netlify, Vercel, dll). Lalu:
+- Android/Chrome: tombol "Pasang aplikasi" muncul, atau menu ⋮ → Instal aplikasi
+- iPhone/Safari: Bagikan → Tambah ke Layar Utama
+- Desktop Chrome/Edge: ikon instal di address bar
+
+File PWA: `manifest.webmanifest`, `sw.js`, folder `icons/`. Setelah mengubah file, naikkan versi `CACHE` di `sw.js` agar pengguna dapat update.

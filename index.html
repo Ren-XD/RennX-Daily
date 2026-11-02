@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#FFF8EC">
+<meta name="application-name" content="RennX Daily">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="RennX Daily">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <title>RennX Daily</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,12 +28,12 @@
 </defs>
 </svg>
 <aside class="side-rail">
-<p class="brand"><span class="brand-mark">R</span><span class="brand-name">RennX Daily<small>Progress Today, Better Tomorrow</small></span></p>
+<p class="brand"><span class="brand-mark"><img src="icons/logo-mark.png" alt="" width="40" height="34"></span><span class="brand-name">RennX Daily<small>Progress Today, Better Tomorrow</small></span></p>
 <nav class="main-nav" id="railNav" aria-label="Menu utama"></nav>
 <blockquote class="rail-quote">“Disiplin hari ini, masa depan yang kamu impikan nanti.”<cite>— RennX</cite></blockquote>
 </aside>
 <header class="top-bar">
-<p class="brand top-brand"><span class="brand-mark">R</span><span class="brand-name">RennX Daily<small>Progress Today, Better Tomorrow</small></span></p>
+<p class="brand top-brand"><span class="brand-mark"><img src="icons/logo-mark.png" alt="" width="40" height="34"></span><span class="brand-name">RennX Daily<small>Progress Today, Better Tomorrow</small></span></p>
 <time class="date-chip" id="dateChip"></time>
 <span class="avatar" id="avatar" aria-hidden="true"></span>
 </header>
@@ -42,6 +50,14 @@
 </menu>
 </form>
 </dialog>
+<button class="pill-action is-primary install-btn" id="installBtn" hidden>Pasang aplikasi</button>
 <script src="app.js"></script>
+<script>
+if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}
+let installEvt=null;const installBtn=document.getElementById('installBtn');
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEvt=e;installBtn.hidden=false});
+installBtn.addEventListener('click',async()=>{if(!installEvt)return;installEvt.prompt();await installEvt.userChoice;installEvt=null;installBtn.hidden=true});
+addEventListener('appinstalled',()=>{installBtn.hidden=true});
+</script>
 </body>
 </html>
